@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 418486312471410349}
   - component: {fileID: 7638642189276666675}
   - component: {fileID: -5533950480148800818}
+  - component: {fileID: -4541127608877491655}
   m_Layer: 0
   m_Name: NetPlayer
   m_TagString: Untagged
@@ -202,3 +203,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serverPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
+--- !u!114 &-4541127608877491655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6690247107163074809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d849b1dd6993d69498dcf1c2eeb75ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
