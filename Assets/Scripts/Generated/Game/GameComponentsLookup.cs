@@ -8,24 +8,27 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Client = 0;
+    public const int DebugMessage = 0;
     public const int LocalPosition = 1;
-    public const int NetworkPosition = 2;
-    public const int View = 3;
+    public const int Move = 2;
+    public const int MoveInput = 3;
+    public const int View = 4;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 5;
 
     public static readonly string[] componentNames = {
-        "Client",
+        "DebugMessage",
         "LocalPosition",
-        "NetworkPosition",
+        "Move",
+        "MoveInput",
         "View"
     };
 
     public static readonly System.Type[] componentTypes = {
-        typeof(ClientComponent),
+        typeof(DebugMessageComponent),
         typeof(LocalPositionComponent),
-        typeof(NetworkPositionComponent),
+        typeof(MoveComponent),
+        typeof(MoveInputComponent),
         typeof(ViewComponent)
     };
 }
