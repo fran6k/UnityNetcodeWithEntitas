@@ -1,8 +1,6 @@
-﻿using System;
-using Entitas;
+﻿using Entitas;
 using Unity.Netcode;
-using Unity.VisualScripting;
-using UnityEngine;
+
 
 public class NetworkGameController : NetworkBehaviour
 {
@@ -12,23 +10,16 @@ public class NetworkGameController : NetworkBehaviour
 
     public void Start()
     {
-        NetworkManager.Singleton.OnServerStarted += NetworkStart;
         NetworkManager.Singleton.OnClientStarted += NetworkStart;
     }
 
     public void NetworkStart()
     {
-        if (IsServer)
-        {
-            var prefebs = Resources.Load<GameObject>("NetPlayer");
-            var gameObject = GameObject.Instantiate(prefebs);
-            gameObject.GetComponent<NetworkObject>().Spawn();
-        }
-
         var contexts = Contexts.sharedInstance;
-        _systems = new Feature("test")
-            .Add(new NetworkTransformTestSystem(contexts));
-
+        
+        _systems = new Feature("Move")
+            .Add(new MoveSystem(contexts));
+        
         _systems.Initialize();
         _start = true;
     }
@@ -36,6 +27,7 @@ public class NetworkGameController : NetworkBehaviour
     public void Update()
     {
         if (!_start) return;
+        
         _systems.Execute();
         _systems.Cleanup();
     }
@@ -43,6 +35,7 @@ public class NetworkGameController : NetworkBehaviour
     public void OnDestroy()
     {
         if (!_start) return;
+        
         _systems.TearDown();
     }
 }
