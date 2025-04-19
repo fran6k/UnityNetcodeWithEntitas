@@ -74,6 +74,8 @@ public class PhysicsObjectView : UnityNetworkView, INetworkPosition, ILocalPosit
         base.Link(contexts, e);
 
         e.AddNetworkPosition(this);
+        e.AddWASDInput(Vector2.zero);
+        e.AddSpeed(10.0f);
 
         if (IsClient)
         {

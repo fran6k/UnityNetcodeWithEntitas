@@ -6,6 +6,7 @@ public class NetworkTransformTestSystem : IExecuteSystem
 {
     private Contexts _contexts;
     private PhysicsObjectView _physicsObjectView;
+    private int pretick = 0;
 
     public NetworkTransformTestSystem(Contexts contexts)
     {
@@ -14,8 +15,8 @@ public class NetworkTransformTestSystem : IExecuteSystem
 
     public void Execute()
     {
-        var tick = NetworkManager.Singleton.NetworkTickSystem.ServerTime.Tick;
-        var group = _contexts.game.GetGroup(GameMatcher.NetworkPosition);
+        var nowtick = NetworkManager.Singleton.NetworkTickSystem.ServerTime.Tick;
+        var group = _contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.NetworkPosition, GameMatcher.WASDInput));
         foreach (var e in group)
         {
             // 如果是客户端的实体，则进行插值
@@ -29,7 +30,11 @@ public class NetworkTransformTestSystem : IExecuteSystem
             }
             else
             {
-                e.networkPosition.Value.Set(new Vector3(2 * Mathf.Cos(tick * 0.1f), 2 * Mathf.Sin(tick * 0.1f), 0));
+
+                var originPosition = e.networkPosition.Value.Get();
+                Vector3 weiyi = new Vector3(e.wASDInput.Value.x, 0f, e.wASDInput.Value.y).normalized * e.speed.Value * Time.deltaTime;
+                originPosition += weiyi;
+                e.networkPosition.Value.Set(originPosition);
             }
         }
     }

@@ -10,22 +10,31 @@ public static class GameComponentsLookup {
 
     public const int Client = 0;
     public const int LocalPosition = 1;
-    public const int NetworkPosition = 2;
-    public const int View = 3;
+    public const int Move = 2;
+    public const int NetworkPosition = 3;
+    public const int Speed = 4;
+    public const int View = 5;
+    public const int WASDInput = 6;
 
-    public const int TotalComponents = 4;
+    public const int TotalComponents = 7;
 
     public static readonly string[] componentNames = {
         "Client",
         "LocalPosition",
+        "Move",
         "NetworkPosition",
-        "View"
+        "Speed",
+        "View",
+        "WASDInput"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(ClientComponent),
         typeof(LocalPositionComponent),
+        typeof(MoveComponent),
         typeof(NetworkPositionComponent),
-        typeof(ViewComponent)
+        typeof(SpeedComponent),
+        typeof(ViewComponent),
+        typeof(WASDInputComponent)
     };
 }

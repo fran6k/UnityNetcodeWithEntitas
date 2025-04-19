@@ -26,3 +26,17 @@ public class ClientComponent : IComponent
     
 }
 
+public class SpeedComponent : IComponent
+{
+    public float Value;
+}
+
+public class MoveComponent : IComponent
+{
+    public Vector3 Value;
+}
+
+public class WASDInputComponent : IComponent
+{
+    public Vector2 Value;
+}

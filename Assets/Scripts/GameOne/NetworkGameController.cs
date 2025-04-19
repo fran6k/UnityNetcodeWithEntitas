@@ -27,7 +27,8 @@ public class NetworkGameController : NetworkBehaviour
 
         var contexts = Contexts.sharedInstance;
         _systems = new Feature("test")
-            .Add(new NetworkTransformTestSystem(contexts));
+            .Add(new NetworkTransformTestSystem(contexts))
+            .Add(new InputSystem(contexts));
 
         _systems.Initialize();
         _start = true;
@@ -40,7 +41,7 @@ public class NetworkGameController : NetworkBehaviour
         _systems.Cleanup();
     }
 
-    public void OnDestroy()
+    public override void OnDestroy()
     {
         if (!_start) return;
         _systems.TearDown();
